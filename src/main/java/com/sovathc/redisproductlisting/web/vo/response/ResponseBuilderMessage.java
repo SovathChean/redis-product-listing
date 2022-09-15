@@ -20,7 +20,6 @@ public class ResponseBuilderMessage<T> {
         this.message.setResultMesssage("fail");
         return this;
     }
-
     public ResponseBuilderMessage<T> addData(T data)
     {
         this.message.setBody(data);

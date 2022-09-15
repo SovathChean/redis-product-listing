@@ -1,0 +1,40 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:12
+    container_name: postgres-db
+    restart: always
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - backend
+    ports:
+      - "5000:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: eco
+      POSTGRES_DB: eco
+      PGDATA: /var/lib/postgresql/data/pgdata
+    healthcheck:
+      test: pg_isready -U postgres
+      interval: 1m
+      timeout: 10s
+      retries: 2
+#  pgadmin:
+#    image: dpage/pgadmin4
+#    environment:
+#      - PGADMIN_DEFAULT_EMAIL=sovathwing09@gmail.com
+#      - PGADMIN_DEFAULT_PASSWORD=@hello
+#    ports:
+#      - "5051:80"
+  redis:
+    image: redis:5.0
+    ports:
+      - "6379:6379"
+networks:
+  backend:
+    name: app
+    driver: bridge
+volumes:
+  postgres_data:
+    driver: local
