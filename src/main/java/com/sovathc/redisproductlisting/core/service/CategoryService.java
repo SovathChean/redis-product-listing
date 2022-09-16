@@ -6,8 +6,8 @@ import com.sovathc.redisproductlisting.web.vo.request.CategoryRequestVO;
 import java.util.List;
 
 public interface CategoryService {
-    Boolean insertCategory(CategoryRequestVO categoryRequestVO);
-    Boolean updateCategory(CategoryRequestVO categoryRequestVO,String categoryId);
+    CategoryDTO insertCategory(CategoryDTO categoryDTO);
+    CategoryDTO updateCategory(CategoryDTO categoryDTO, String categoryId);
     Boolean deleteCategory(String categoryId);
     List<CategoryDTO>  getListCategories();
     CategoryDTO getCategoryById(String categoryId);

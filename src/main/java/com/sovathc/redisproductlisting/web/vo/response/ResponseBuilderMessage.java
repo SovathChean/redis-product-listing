@@ -9,14 +9,14 @@ public class ResponseBuilderMessage<T> {
 
     public ResponseBuilderMessage<T> success() {
         this.message.setResult(true);
-        this.message.setResultCode(HttpStatus.ACCEPTED.getReasonPhrase());
+        this.message.setResultCode(HttpStatus.ACCEPTED.toString());
         this.message.setResultMesssage("success");
         return this;
     }
     public ResponseBuilderMessage<T> fail()
     {
         this.message.setResult(true);
-        this.message.setResultCode(HttpStatus.BAD_GATEWAY.getReasonPhrase());
+        this.message.setResultCode(HttpStatus.BAD_GATEWAY.toString());
         this.message.setResultMesssage("fail");
         return this;
     }

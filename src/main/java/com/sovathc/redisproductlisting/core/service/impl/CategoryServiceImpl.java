@@ -9,13 +9,14 @@ import java.util.List;
 
 @Service
 public class CategoryServiceImpl implements CategoryService {
+
     @Override
-    public Boolean insertCategory(CategoryRequestVO categoryRequestVO) {
+    public CategoryDTO insertCategory(CategoryDTO categoryDTO) {
         return null;
     }
 
     @Override
-    public Boolean updateCategory(CategoryRequestVO categoryRequestVO, String categoryId) {
+    public CategoryDTO updateCategory(CategoryDTO categoryDTO, String categoryId) {
         return null;
     }
 

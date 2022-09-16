@@ -9,13 +9,14 @@ import java.util.List;
 
 @Service
 public class ProductServiceImpl implements ProductService {
+
     @Override
-    public Boolean createProduct(ProductRequestVO productRequestVO) {
+    public ProductDTO createProduct(ProductDTO productDTO) {
         return null;
     }
 
     @Override
-    public Boolean updateProduct(ProductRequestVO productRequestVO, String productId) {
+    public ProductDTO updateProduct(ProductDTO productDTO, String productId) {
         return null;
     }
 
