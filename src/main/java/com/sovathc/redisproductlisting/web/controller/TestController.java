@@ -22,6 +22,6 @@ public class TestController {
     public ResponseMessage<List<TestResponse>> getListTest()
     {
         List<TestResponse> testResponse = new ArrayList<>();
-        return new ResponseBuilderMessage<List<TestResponse>>().success().addData(testResponse).build();
+        return new ResponseBuilderMessage<List<TestResponse>>().fail().build();
     }
 }

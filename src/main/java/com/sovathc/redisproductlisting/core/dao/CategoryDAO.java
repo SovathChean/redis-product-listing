@@ -8,9 +8,9 @@ import java.util.List;
 @Mapper
 public interface CategoryDAO {
     List<CategoryDTO> findListCategory();
-    CategoryDTO findProductById();
-    Boolean insert();
+    CategoryDTO findCategoryById(String categoryId);
+    Boolean insert(CategoryDTO categoryDTO);
 
-    Boolean update();
+    Boolean update(CategoryDTO categoryDTO);
     Boolean delete();
 }
