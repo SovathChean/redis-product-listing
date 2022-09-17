@@ -8,9 +8,9 @@ import java.util.List;
 @Mapper
 public interface ProductDAO {
     List<ProductDTO> findListProduct();
-    ProductDTO findProductById();
-    Boolean insert();
+    ProductDTO findProductById(String id);
+    Boolean insert(ProductDTO productDTO);
 
-    Boolean update();
-    Boolean delete();
+    Boolean update(ProductDTO productDTO);
+    Boolean delete(String id);
 }

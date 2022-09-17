@@ -6,5 +6,5 @@ import lombok.Data;
 public class ProductResponseVO {
     private String id;
     private String name;
-    private String descrption;
+    private String description;
 }
