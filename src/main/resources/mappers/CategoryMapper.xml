@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sovathc.redisproductlisting.core.dao.CategoryDAO">
+    <select id="findListCategory" useCache="true" resultType="com.sovathc.redisproductlisting.core.dto.CategoryDTO">
+        select * from categories;
+    </select>
+    <select id="findCategoryById" useCache="true" resultType="com.sovathc.redisproductlisting.core.dto.CategoryDTO">
+        select * from categories where id = #{id};
+    </select>
+    <insert id="insert" keyProperty="true">
+        INSERT INTO categories
+        (
+            id,
+            name
+        )
+        VALUES
+        (
+            #{id},
+            #{name}
+        );
+    </insert>
+    <update id="update" flushCache="true">
+        UPDATE categories SET name=#{name} WHERE id = #{id}
+    </update>
+    <delete id="delete" flushCache="true">
+        DELETE FROM categories WHERE id = #{categoryId}
+    </delete>
+</mapper>

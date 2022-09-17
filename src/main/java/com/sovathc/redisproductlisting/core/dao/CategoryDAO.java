@@ -12,5 +12,5 @@ public interface CategoryDAO {
     Boolean insert(CategoryDTO categoryDTO);
 
     Boolean update(CategoryDTO categoryDTO);
-    Boolean delete();
+    Boolean delete(String categoryId);
 }

@@ -9,7 +9,7 @@ public class ResponseBuilderMessage<T> {
 
     public ResponseBuilderMessage<T> success() {
         this.message.setResult(true);
-        this.message.setResultCode(HttpStatus.ACCEPTED.toString());
+        this.message.setResultCode(HttpStatus.OK.toString());
         this.message.setResultMesssage("success");
         return this;
     }

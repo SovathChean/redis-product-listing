@@ -18,10 +18,9 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @Slf4j
 public abstract class AbstractErrorHandler extends ResponseEntityExceptionHandler {
 
-    @SuppressWarnings("unchecked")
     @Override
     protected ResponseEntity handleExceptionInternal(
-            Exception ex, @Nullable Object body, HttpHeaders headers, HttpStatus status, WebRequest request)
+            Exception ex, Object body, HttpHeaders headers, HttpStatus status, WebRequest request)
     {
         super.handleExceptionInternal(ex, body, headers, status, request);
         if (ex instanceof HttpMessageNotReadableException)
@@ -30,7 +29,6 @@ public abstract class AbstractErrorHandler extends ResponseEntityExceptionHandle
 
         return this.buildExceptionResponse(ex, HttpStatus.INTERNAL_SERVER_ERROR, SysHttpResultCode.ERROR_500.getCode());
     }
-    @ExceptionHandler()
 
     protected ResponseEntity<ResponseMessage<?>> handleBadRequestException(Exception ex, HttpStatus status)
     {
@@ -59,6 +57,7 @@ public abstract class AbstractErrorHandler extends ResponseEntityExceptionHandle
         responseMessage.setError(ex.getMessage());
         responseMessage.setResultMessage(ex.getLocalizedMessage());
         responseMessage.setResultCode(resultCode);
+        responseMessage.setStatus(status);
 
         return responseMessage;
     }

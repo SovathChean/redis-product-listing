@@ -1,5 +1,6 @@
 package com.sovathc.redisproductlisting.web.controller;
 
+import com.sovathc.redisproductlisting.core.common.exceptionEntity.BusinessException;
 import com.sovathc.redisproductlisting.core.dto.CategoryDTO;
 import com.sovathc.redisproductlisting.core.mapper.CategoryMapper;
 import com.sovathc.redisproductlisting.core.service.CategoryService;
@@ -50,8 +51,7 @@ public class CategoryController {
     }
 
     @PutMapping(value="/{id}")
-    public ResponseMessage<CategoryResponseVO> updateCategory(@PathVariable(value = "id")String categoryId, @Valid @RequestBody CategoryRequestVO requestVO)
-    {
+    public ResponseMessage<CategoryResponseVO> updateCategory(@PathVariable(value = "id")String categoryId, @Valid @RequestBody CategoryRequestVO requestVO) throws BusinessException {
         CategoryDTO categoryDTO = categoryService.updateCategory(CategoryMapper.INSTANCE.fromCategoryRequest(requestVO), categoryId);
         CategoryResponseVO responseVO =  CategoryMapperVO.INSTANCE.fromCategoryDTO(categoryDTO);
         return new ResponseBuilderMessage<CategoryResponseVO>()

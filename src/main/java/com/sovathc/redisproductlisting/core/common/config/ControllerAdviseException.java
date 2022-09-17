@@ -4,7 +4,6 @@ import com.sovathc.redisproductlisting.core.common.exception.AbstractErrorHandle
 import com.sovathc.redisproductlisting.core.common.exceptionEntity.BusinessException;
 import com.sovathc.redisproductlisting.core.common.type.SysHttpResultCode;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -27,6 +26,7 @@ public class ControllerAdviseException extends AbstractErrorHandler {
             logger.error("Runtime exception: {}", ex);
             return buildExceptionResponse(ex, HttpStatus.BAD_REQUEST, SysHttpResultCode.ERROR_400.getCode());
         }
+
         logger.error("Internal server exception: {}", ex);
         return buildExceptionResponse(ex, HttpStatus.INTERNAL_SERVER_ERROR, SysHttpResultCode.ERROR_500.getCode());
     }

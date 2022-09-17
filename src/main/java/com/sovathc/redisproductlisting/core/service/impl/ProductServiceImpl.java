@@ -2,7 +2,6 @@ package com.sovathc.redisproductlisting.core.service.impl;
 
 import com.sovathc.redisproductlisting.core.dto.ProductDTO;
 import com.sovathc.redisproductlisting.core.service.ProductService;
-import com.sovathc.redisproductlisting.web.vo.request.ProductRequestVO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

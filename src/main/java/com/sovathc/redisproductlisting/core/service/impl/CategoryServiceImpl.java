@@ -1,13 +1,12 @@
 package com.sovathc.redisproductlisting.core.service.impl;
 
 import com.sovathc.redisproductlisting.core.common.exceptionEntity.BusinessException;
-import com.sovathc.redisproductlisting.core.common.mybatisMapper.SequenceMapper;
+import com.sovathc.redisproductlisting.core.common.type.SysHttpResultCode;
 import com.sovathc.redisproductlisting.core.dao.CategoryDAO;
+import com.sovathc.redisproductlisting.core.dao.SequenceDAO;
 import com.sovathc.redisproductlisting.core.dto.CategoryDTO;
 import com.sovathc.redisproductlisting.core.service.CategoryService;
-import com.sovathc.redisproductlisting.web.vo.request.CategoryRequestVO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,36 +16,39 @@ public class CategoryServiceImpl implements CategoryService {
     @Autowired
     private CategoryDAO categoryDAO;
     @Autowired
-    private SequenceMapper sequenceMapper;
+    private SequenceDAO sequenceDAO;
 
     @Override
     public CategoryDTO insertCategory(CategoryDTO categoryDTO) {
-        categoryDTO.setId(sequenceMapper.nextvalFormatted("categories_seq"));
+        categoryDTO.setId(sequenceDAO.nextvalFormatted("categories_seq"));
         categoryDAO.insert(categoryDTO);
-        return null;
+        return categoryDTO;
     }
 
     @Override
-    public CategoryDTO updateCategory(CategoryDTO categoryDTO, String categoryId) {
+    public CategoryDTO updateCategory(CategoryDTO categoryDTO, String categoryId) throws BusinessException {
         CategoryDTO getCategory = categoryDAO.findCategoryById(categoryId);
-//        if(getCategory == null) throw BusinessException("Category cannot be found");
-
+        if(getCategory == null)
+            throw new BusinessException(SysHttpResultCode.ERROR_400.getCode(), "Category cannot be found");
         categoryDTO.setId(categoryId);
-        return null;
+        categoryDAO.update(categoryDTO);
+
+        return categoryDTO;
     }
 
     @Override
     public Boolean deleteCategory(String categoryId) {
+        categoryDAO.delete(categoryId);
         return null;
     }
 
     @Override
     public List<CategoryDTO> getListCategories() {
-        return null;
+        return categoryDAO.findListCategory();
     }
 
     @Override
     public CategoryDTO getCategoryById(String categoryId) {
-        return null;
+        return categoryDAO.findCategoryById(categoryId);
     }
 }
