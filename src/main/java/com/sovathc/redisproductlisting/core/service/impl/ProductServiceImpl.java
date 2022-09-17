@@ -5,6 +5,7 @@ import com.sovathc.redisproductlisting.core.dao.SequenceDAO;
 import com.sovathc.redisproductlisting.core.dto.ProductDTO;
 import com.sovathc.redisproductlisting.core.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,6 +16,7 @@ public class ProductServiceImpl implements ProductService {
     private ProductDAO productDAO;
     @Autowired
     private SequenceDAO sequenceDAO;
+
     @Override
     public ProductDTO createProduct(ProductDTO productDTO) {
         String id = sequenceDAO.nextvalFormatted("product_seq");
@@ -35,13 +37,12 @@ public class ProductServiceImpl implements ProductService {
 
         return productDAO.delete(productId);
     }
-
     @Override
     public List<ProductDTO> getListProducts() {
 
         return productDAO.findListProduct();
     }
-
+    @Cacheable(value = "Product", key="#productId")
     @Override
     public ProductDTO getProductDTOById(String productId) {
 
