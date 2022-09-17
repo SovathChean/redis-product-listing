@@ -16,7 +16,7 @@ public class TestController {
     {
         TestResponse testResponse = new TestResponse();
         testResponse.setMessage("HI");
-        return new ResponseBuilderMessage<TestResponse>().success().addData(testResponse).build();
+        return new ResponseBuilderMessage<TestResponse>().success().build();
     }
     @GetMapping("/api/list-test")
     public ResponseMessage<List<TestResponse>> getListTest()
