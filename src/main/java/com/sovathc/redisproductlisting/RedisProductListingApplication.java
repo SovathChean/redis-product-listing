@@ -9,6 +9,7 @@ import org.springframework.cache.annotation.EnableCaching;
 public class RedisProductListingApplication {
 
 	public static void main(String[] args) {
+
 		SpringApplication.run(RedisProductListingApplication.class, args);
 	}
 

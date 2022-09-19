@@ -41,7 +41,7 @@ public class ProductServiceImpl implements ProductService {
 
         return productDAO.delete(productId);
     }
-    @CacheEvict(value="product", allEntries=true)
+    @Cacheable(value="product")
     @Override
     public List<ProductDTO> getListProducts() {
 
